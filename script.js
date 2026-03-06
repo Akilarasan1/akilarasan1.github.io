@@ -268,3 +268,25 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+
+const phoneNumber = "+916383068156";
+const phoneLink = document.getElementById("phoneLink");
+
+function isMobileDevice() {
+    return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+phoneLink.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    if (isMobileDevice()) {
+        // Open dial pad
+        window.location.href = "tel:" + phoneNumber;
+    } else {
+        // Copy to clipboard
+        navigator.clipboard.writeText(phoneNumber).then(() => {
+            alert("Phone number copied to clipboard!");
+        });
+    }
+});
